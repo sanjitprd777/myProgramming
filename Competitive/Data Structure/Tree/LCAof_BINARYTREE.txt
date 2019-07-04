@@ -1,0 +1,40 @@
+//LCA FOR BINARY SEARCH TREE;
+Node* LCA(Node *root,int n1,int n2){
+	if(root->data>max(n1,n2))
+		return LCA(root->right,n1,n2);
+	else if(root->data<min(n1,n2))
+		return LCA(root->left,n1,n2);
+	return root;
+}
+
+
+Node * LCA(Node* root ,int n1 ,int n2 )
+{
+ 
+  //Your code here 
+
+   Node *lc,*rc;
+  
+   if(root==NULL)
+     
+     return NULL;
+  
+   if(root->data==n1||root->data==n2)
+   
+     return root;
+    
+   
+   lc=LCA(root->left,n1,n2);
+    
+  
+   rc=LCA(root->right,n1,n2);
+    
+ 
+   if(lc!=NULL&&rc!=NULL)
+      
+     return root;
+   
+   return lc!=NULL?lc:rc;
+  
+
+}

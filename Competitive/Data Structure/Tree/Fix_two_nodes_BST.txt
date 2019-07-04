@@ -1,0 +1,92 @@
+/*
+Please note that it's Function problem i.e.
+you need to write your solution in the form Function(s) only.
+
+Driver Code to call/invoke your function would be added by GfG's Online Judge.
+*/
+
+
+/*Complete the function
+Node is as follows:
+
+
+struct node
+{
+
+    int data;
+
+    struct node *left, *right;
+
+};
+
+*/
+void swap(node* x,node* y)
+{
+
+    int temp=x->data;
+
+    x->data=y->data;
+
+    y->data=temp;
+}
+
+struct node *correctBST( struct node* root )
+{
+
+//add code here.
+
+    int min=-1,f=1;
+
+    stack<node*> s;
+
+    node *p=root,*r,*pre,*ss;
+    while(1){
+
+        if(p!=NULL){
+
+            s.push(p);
+
+            p=p->left;
+
+        }
+
+        else{
+
+            if(!s.empty()){
+
+                p=s.top();
+
+                if(p->data<min&&f==0)
+
+                    ss=p;
+
+                s.pop();
+
+                if(p->data<min&&f==1){
+
+                    r=pre;
+
+                    f=0;
+
+               } 
+
+               pre=p;
+                min=p->data;
+
+                p=p->right;
+
+            }
+
+            else
+ 
+               break;
+
+        }
+
+    }
+
+    swap(r,ss);
+
+    return root;
+
+}

@@ -1,0 +1,37 @@
+//CHECK IF TREE IS bst.
+
+//Recursive function 
+
+bool CHECK(BST *root,long int min,long int max){
+	if(root==NULL)
+		return true;
+	if(root->data<=min||root->data>max)
+		return false;
+	return CHECK(root->lc,min,root->data)&&CHECK(root->rc,root->data,max);
+}
+
+// USING INORDER TRAVERSAL
+
+void isBST(Node *root){
+	Node *p;
+	int min=-1;
+	stack<Node*> s;
+	while(1){
+		if(root!=NULL){
+		    s.push(root);
+		    root=root->left;
+		}
+	else{
+		if(!s.empty()){
+		p=s.top();
+		if(p->data<=min)
+	          return false;
+		s.pop();
+		min=p->data;
+		root=p->right;
+		}
+		else
+		   return true;
+	    }
+	}
+}
